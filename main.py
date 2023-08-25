@@ -4,8 +4,22 @@ import pandas as pd
 import numpy as np
 import joblib
 import pickle
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+#Add the access origins
+origins=["*"]
+
+#configuringthe origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+    
 
 # Define the expected JSON input structure using Pydantic
 class InputData(BaseModel):
